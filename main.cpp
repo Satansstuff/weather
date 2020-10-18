@@ -10,7 +10,7 @@ int main(int argc, char **argv)
         city = argv[2];
     }
     httplib::Client cli("http://api.weatherstack.com");
-    auto res = cli.Get((std::string("/current?access_key=XXXXXXXXXXXXXXXX&query=") + city).c_str());
+    auto res = cli.Get((std::string("/current?access_key=XXXXXXXXXXXXX&query=") + city).c_str());
 
     if(res->status == 200)
     {
@@ -24,12 +24,12 @@ int main(int argc, char **argv)
             std::string time = j.at("location").at("localtime");
             time.erase(0, 11);
             std::string wind_dir = j.at("current").at("wind_dir");
-            unsigned wind_speed = j.at("current").at("wind_speed");
+            double wind_speed = j.at("current").at("wind_speed");
             std::cout << "Observation time: " << time << std::endl; // Technically cheating
             std::cout << "Temperature: " << temp << "c" << std::endl;
             std::cout << "Feels-like: " << feels << "c" <<std::endl; 
             std::cout << "Weather: " << weather << std::endl;
-            std::cout << "Wind: " << wind_speed << "m/s, " << wind_dir << std::endl;
+            std::cout << "Wind: " << wind_speed * 0.3048 << " m/s, " << wind_dir << std::endl;
             std::cout << "Location: " << city << std::endl;
         } catch (const std::exception& e) 
         {
