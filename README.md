@@ -7,22 +7,17 @@ Compile using G++
 
 g++ main.cpp -std=c++20 -o whatever 
 
-returns 
+returns:
 
 Time
 
-
 Temperature
-
 
 Feel
 
-
 Weather
 
-
 Wind
-
 
 Location
 
