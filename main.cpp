@@ -10,17 +10,17 @@ int main(int argc, char **argv)
         city = argv[2];
     }
     httplib::Client cli("http://api.weatherstack.com");
-    auto res = cli.Get((std::string("/current?access_key=XXXXXXXXXXXXX&query=") + city).c_str());
+    auto res = cli.Get((std::string("/current?access_key=ad526d855d41740d777c84a76c2070ef&query=") + city).c_str());
 
     if(res->status == 200)
     {
         auto j = json::parse(res->body);
         try 
         {
-            unsigned temp = j.at("current").at("temperature");
+            int temp = j.at("current").at("temperature");
             std::string city = j.at("location").at("name");
             std::string weather = j.at("current").at("weather_descriptions").at(0);
-            unsigned feels = j.at("current").at("feelslike");
+            int feels = j.at("current").at("feelslike");
             std::string time = j.at("location").at("localtime");
             time.erase(0, 11);
             std::string wind_dir = j.at("current").at("wind_dir");
