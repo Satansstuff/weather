@@ -6,17 +6,24 @@ using json = nlohmann::json;
 int main(int argc, char **argv)
 {
     std::string city = "karlskrona";
+    // Key 
+    std::string key = "ad526d855d41740d777c84a76c2070ef";
     if(argc > 1)
     {
         city = argv[1];
     }
+    else if(argc == 3)
+    {
+        city = argv[1];
+        key = argv[2];
+    }
     else
     {
-        std::cout << "Usage: " << argv[0] << " city" << std::endl;
+        std::cout << "Usage: " << argv[0] << " city" << " key (Optional)" << std::endl;
         return EXIT_FAILURE;
     }
     httplib::Client cli("http://api.weatherstack.com");
-    auto res = cli.Get((std::string("/current?access_key=ad526d855d41740d777c84a76c2070ef&query=") + city).c_str());
+    auto res = cli.Get((std::string("/current?access_key=") + key + "&query=" + city).c_str());
 
     if(res->status == 200)
     {
