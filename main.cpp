@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "httplib.h"
 #include "json.hpp"
 using json = nlohmann::json;
@@ -7,7 +8,12 @@ int main(int argc, char **argv)
     std::string city = "karlskrona";
     if(argc > 1)
     {
-        city = argv[2];
+        city = argv[1];
+    }
+    else
+    {
+        std::cout << "Usage: " << argv[0] << " city" << std::endl;
+        return EXIT_FAILURE;
     }
     httplib::Client cli("http://api.weatherstack.com");
     auto res = cli.Get((std::string("/current?access_key=ad526d855d41740d777c84a76c2070ef&query=") + city).c_str());
