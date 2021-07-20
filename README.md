@@ -1,11 +1,11 @@
 # weather
 A little weather C++ script
 
-Change the XXXXX to your key from http://api.weatherstack.com
+Change the key to your key from http://api.weatherstack.com, or use mine 
 
-Compile using G++
+gcc is required to make.
 
-g++ main.cpp -std=c++20 -o whatever 
+simply use make while in the directory
 
 returns:
 
